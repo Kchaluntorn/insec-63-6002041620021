@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use Yii;
+use Yii;  
 
 /**
  * This is the model class for table "post".
@@ -21,7 +21,7 @@ class Post extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
-     */
+     */ 
     public static function tableName()
     {
         return 'post';
