@@ -54,6 +54,8 @@ class PostController extends Controller
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]);
+        }else{
+            echo "<h1>403</h1>";
         }
     }
 
@@ -65,9 +67,13 @@ class PostController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        if(Yii::$app->user->can('post-create')) {
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        } else{
+            echo "<h1>403</h1>";
+        }
     }
 
     /**
@@ -87,6 +93,9 @@ class PostController extends Controller
             return $this->render('create', [
                 'model' => $model,
             ]);
+        }
+        else {
+            echo "<h1>403</h1>";
         }
     }
 
@@ -110,6 +119,9 @@ class PostController extends Controller
                 'model' => $model,
             ]);
         }
+        else {
+            echo "<h1>403</h1>";
+        }
     }
 
     /**
@@ -125,6 +137,9 @@ class PostController extends Controller
             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);
+        }
+        else {
+            echo "<h1>403</h1>";
         }
     }
 
@@ -143,6 +158,9 @@ class PostController extends Controller
             }
 
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        else {
+            echo "<h1>403</h1>";
         }
     }
 }
