@@ -152,15 +152,11 @@ class PostController extends Controller
      */
     protected function findModel($id)
     {
-        if (Yii::$app->user->can('post-view')) {
             if (($model = Post::findOne($id)) !== null) {
                 return $model;
             }
 
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-        else {
-            echo "<h1>403</h1>";
-        }
-    }
+
 }
